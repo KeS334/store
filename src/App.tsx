@@ -8,8 +8,8 @@ function App() {
         <>
             <Navigation/>
             <Routes>
-                <Route path="/" element={<ProductPage/>}/>
-                <Route path="/about" element={<AboutPage/>}/>
+                <Route path="/store" element={<ProductPage/>}/>
+                <Route path="/store/about" element={<AboutPage/>}/>
             </Routes>
         </>
     )
