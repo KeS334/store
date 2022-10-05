@@ -7,8 +7,8 @@ const Navigation = () => {
             <span className="font-bold">KeStore</span>
 
             <span>
-                <Link to="/" className="mr-2">Product</Link>
-                <Link to="/about">About</Link>
+                <Link to="store/" className="mr-2">Product</Link>
+                <Link to="store/about">About</Link>
             </span>
         </nav>
     );
