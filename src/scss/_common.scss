@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+body{
+  font-family: 'PT Sans', sans-serif;
+}
+
+.flex{
+  &-type-1{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  &-type-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+}
+.grid{
+  display: grid;
+}
+.fixed{
+  position: fixed;
+}
+.button{
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: $font-md;
+  line-height: $font-lg;
+  &_yellow{
+    background-color: $color-yellow;
+  }
+  &_blue{
+    background-color: $color-blue;
+  }
+  &:hover{
+    opacity: 0.8;
+  }
+}

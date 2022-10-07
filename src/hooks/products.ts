@@ -4,11 +4,15 @@ import axios, {AxiosError} from "axios";
 
 export function useProducts(){
     const [products, setProducts] = useState<IProduct[]>([])
+    const [localProducts, setLocalProducts] = useState<IProduct[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
     function addProduct(product:IProduct){
-        setProducts(prev => [...prev, product])
+
+        let newLocalProducts = [...localProducts, product]
+        setLocalProducts(newLocalProducts)
+        localStorage.setItem('localProducts', JSON.stringify(newLocalProducts));
     }
 
     async function fetchProducts(){
@@ -27,9 +31,15 @@ export function useProducts(){
 
     }
 
+    function fetchLocalProducts(){
+        setLocalProducts(JSON.parse(localStorage.getItem('localProducts')||'[]'));
+    }
+
     useEffect(() =>{
         fetchProducts()
+        fetchLocalProducts()
+
     }, [])
 
-    return {products, loading, error, addProduct}
+    return {products, localProducts, loading, error, addProduct}
 }

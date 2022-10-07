@@ -9,8 +9,9 @@ import Modal from "../components/Modal";
 import CreateProduct from "../components/CreateProduct";
 
 const ProductPage = () => {
-    const {products, loading, error, addProduct} = useProducts();
+    const {products, localProducts, loading, error, addProduct} = useProducts();
     const {modal, open, close} = useContext(ModalContext);
+
 
     const createHandler = (product:IProduct) =>{
         close()
@@ -18,10 +19,11 @@ const ProductPage = () => {
     }
 
     return (
-        <div className="container mx-auto max-w-2xl pt-5">
+        <div className="products grid">
             {loading && <Loader/>}
             {error && <ErrorMessage error={error}/>}
             {products.map(item => <Product product={item} key={item.id}/>)}
+            {localProducts.map((item,index) => <Product product={item} key={"custom-item-" + index}/>)}
 
             {modal &&
             <Modal title="Create new Product" onClose={close}>
@@ -30,7 +32,7 @@ const ProductPage = () => {
 
             {!modal &&
             <button
-                className="fixed bottom-5 right-5 py-3 px-4 bg-yellow-400 rounded-full text-white text-2xl"
+                className="popup__opener fixed"
                 onClick={open}
             >+</button>}
 

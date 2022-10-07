@@ -1,0 +1,13 @@
+.header{
+  height: 50px;
+  color: $color-white;
+  background-color: $color-grey;
+  padding: 0 20px;
+  &__logo{
+    font-size: $font-lg;
+  }
+}
+.nav{
+  display: flex;
+  gap: 20px;
+}

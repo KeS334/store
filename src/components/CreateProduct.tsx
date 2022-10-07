@@ -1,20 +1,8 @@
 import React, {useState} from 'react';
 import {IProduct} from "../models";
 import axios from "axios";
-import ErrorMessage from "./ErrorMessage";
+import {useCategories} from "../hooks/categories";
 
-
-const productData: IProduct =  {
-    title: '',
-    price: 13.5,
-    description: 'lorem ipsum set',
-    image: 'https://i.pravatar.cc',
-    category: 'electronic',
-    rating: {
-        rate: 42,
-        count: 10
-    }
-}
 
 interface CreateProductProps {
     onCreate: (product: IProduct)=> void
@@ -22,41 +10,78 @@ interface CreateProductProps {
 
 const CreateProduct = ({onCreate}:CreateProductProps) => {
 
-    const [value, setValue] = useState('')
-    const [error, setError] = useState('')
+
+    const [value, setValue] = useState({
+        title: '',
+        price: '',
+        description: '',
+        image: 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg',
+        category: ''
+    })
+    const {categories} = useCategories();
+
 
     const submitHandler = async (event: React.FormEvent) =>{
         event.preventDefault()
-        setError('')
 
-        if(value.trim().length === 0) {
-            setError('Please enter valid title')
-            return
-        }
-
-        productData.title = value
-
-        const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData)
-
+        const response = await axios.post<IProduct>('https://fakestoreapi.com/products', value);
         onCreate(response.data);
     }
-    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value)
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
+        setValue({...value, [event.target.name]: event.target.value});
+    }
+    const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setValue({...value, [event.target.name]: event.target.value});
     }
 
+    // @ts-ignore
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className='form flex-type-2'>
             <input
+                name="title"
                 type="text"
-                className="border py-2 px-4 mb-2 w-full outline-0"
                 placeholder="Enter product title..."
-                value={value}
+                value={value.title}
                 onChange={changeHandler}
+                required
             />
+            <input
+                name="price"
+                type="number"
+                placeholder="Enter product price..."
+                value={value.price}
+                onChange={changeHandler}
+                min="0"
+                step="0.01"
+                required
+            />
+            <textarea
+                name="description"
+                placeholder="Enter product description..."
+                value={value.description}
+                onChange={changeHandler}
+                required
+            />
+            <textarea
+                name="image"
+                placeholder="Enter image URL"
+                value={value.image}
+                onChange={changeHandler}
+                required
+            />
+            <select
+                name="category"
+                id="categories"
+                value={value.category}
+                onChange={changeSelectHandler}
+                required
+            >
+                <option value="">Select Category</option>
+                {categories.map(item => <option value={item} key={item}>{item}</option>)}
+            </select>
 
-            {error && <ErrorMessage error={error}/>}
 
-            <button type="submit" className="py-2 px-4 border bg-yellow-400 hover:text-white">Create</button>
+            <button type="submit" className="button button_yellow">Create</button>
         </form>
     );
 };

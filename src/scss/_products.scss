@@ -1,0 +1,39 @@
+.products{
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 50px 10%;
+  align-items: start;
+  &__card{
+
+  }
+}
+.card{
+  display: grid;
+  grid-template-rows: 200px 50px 30px auto;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 5%;
+  text-align: center;
+  img{
+    max-height: 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  &__button{
+    width: 140px;
+    margin: 0 auto;
+  }
+  &__details{
+    text-align: justify;
+    margin-top: 20px;
+    font-size: $font-md;
+    font-family: 'PT Serif', serif;
+  }
+  &__rate{
+    text-align: center;
+    span{
+      font-weight: bold;
+    }
+  }
+}

@@ -9,23 +9,24 @@ interface ProductProps {
 const Product = ({product}: ProductProps) => {
     const [details, setDetails] = useState(false);
 
-    const btnClassName = details ? 'bg-yellow-400' : 'bg-blue-400'
+    const btnClassName = details ? 'button_yellow' : 'button_blue'
 
-    const btnClasses =  ['my-2 py-2 px-4 border', btnClassName]
+    const btnClasses =  ['card__button button', btnClassName]
 
     return (
-        <div className="border py-2 px-4 rounded flex flex-col items-center">
-            <img src={product.image} className="w-1/6" alt={product.title}/>
+        <div className="products__card card grid">
+            <img src={product.image} alt={product.title}/>
             <p>{product.title}</p>
-            <span className="font-bold">{product.price}</span>
+            <span className="font-bold">{product.price}$</span>
             <button
                 className={btnClasses.join(' ')}
                 onClick={() => setDetails(prev => !prev)}
             >{details ? 'Hide Details' : 'Show Details'}</button>
 
-            {details && <div>
+            {details && <div className="card__details">
                 <p>{product.description}</p>
-                <p> Rate: <span style={{fontWeight: 'bold'}}>{product?.rating?.rate}</span></p>
+                <br/>
+                {product?.rating && <p className="card__rate"> Rate: <span >{product?.rating?.rate}</span></p>}
             </div>
             }
         </div>
