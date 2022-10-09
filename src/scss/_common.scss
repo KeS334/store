@@ -30,6 +30,9 @@ body{
 .fixed{
   position: fixed;
 }
+.absolute{
+  position: absolute;
+}
 .button{
   padding: 8px;
   border: none;
@@ -44,5 +47,23 @@ body{
   }
   &:hover{
     opacity: 0.8;
+  }
+}
+.searchbar{
+  width: 100%;
+  padding: 20px 10%;
+  &__container{
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 40px 5%;
+  }
+  input{
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $color-grey;
+    font-size: $font-md;
+    line-height: $font-lg;
   }
 }

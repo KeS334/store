@@ -34,7 +34,6 @@ const CreateProduct = ({onCreate}:CreateProductProps) => {
         setValue({...value, [event.target.name]: event.target.value});
     }
 
-    // @ts-ignore
     return (
         <form onSubmit={submitHandler} className='form flex-type-2'>
             <input

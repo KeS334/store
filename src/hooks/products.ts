@@ -10,7 +10,7 @@ export function useProducts(){
 
     function addProduct(product:IProduct){
 
-        let newLocalProducts = [...localProducts, product]
+        let newLocalProducts = [...localProducts, {...product, custom: true}]
         setLocalProducts(newLocalProducts)
         localStorage.setItem('localProducts', JSON.stringify(newLocalProducts));
     }
