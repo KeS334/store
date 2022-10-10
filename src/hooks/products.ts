@@ -7,12 +7,29 @@ export function useProducts(){
     const [localProducts, setLocalProducts] = useState<IProduct[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    let newLocalProducts: IProduct[];
+
+
+    function updateStateAndStorage(item: IProduct[]){
+        setLocalProducts(item)
+        localStorage.setItem('localProducts', JSON.stringify(item));
+    }
 
     function addProduct(product:IProduct){
 
-        let newLocalProducts = [...localProducts, {...product, custom: true}]
-        setLocalProducts(newLocalProducts)
-        localStorage.setItem('localProducts', JSON.stringify(newLocalProducts));
+        let newId = localProducts[localProducts.length - 1] ? localProducts[localProducts.length - 1].id + 1 :product.id
+        newLocalProducts = [...localProducts, {...product, id: newId, custom: true}]
+
+        updateStateAndStorage(newLocalProducts)
+    }
+    function editProduct(product:IProduct){
+        newLocalProducts = [...localProducts];
+        newLocalProducts.find((item, index) => {
+            if(item.id === product.id){
+                newLocalProducts[index] = product;
+            }
+        })
+        updateStateAndStorage(newLocalProducts)
     }
 
     async function fetchProducts(){
@@ -41,5 +58,5 @@ export function useProducts(){
 
     }, [])
 
-    return {products, localProducts, loading, error, addProduct}
+    return {products, localProducts, loading, error, addProduct, editProduct}
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IProduct} from "../models";
 import axios from "axios";
 import {useCategories} from "../hooks/categories";
@@ -6,14 +6,18 @@ import {useCategories} from "../hooks/categories";
 
 interface CreateProductProps {
     onCreate: (product: IProduct)=> void
+    onEdit: (product: IProduct)=> void
+    modalContent?: IProduct,
+    edit: boolean
 }
 
-const CreateProduct = ({onCreate}:CreateProductProps) => {
+const CreateProduct = ({onCreate, onEdit, modalContent, edit}:CreateProductProps) => {
 
 
     const [value, setValue] = useState({
+        id: 0,
         title: '',
-        price: '',
+        price: 0,
         description: '',
         image: 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg',
         category: ''
@@ -24,8 +28,12 @@ const CreateProduct = ({onCreate}:CreateProductProps) => {
     const submitHandler = async (event: React.FormEvent) =>{
         event.preventDefault()
 
-        const response = await axios.post<IProduct>('https://fakestoreapi.com/products', value);
-        onCreate(response.data);
+        if(edit){
+            onEdit(value)
+        }else{
+            const response = await axios.post<IProduct>('https://fakestoreapi.com/products', value)
+            onCreate(response.data);
+        }
     }
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
         setValue({...value, [event.target.name]: event.target.value});
@@ -33,6 +41,12 @@ const CreateProduct = ({onCreate}:CreateProductProps) => {
     const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setValue({...value, [event.target.name]: event.target.value});
     }
+
+    useEffect(() => {
+        if(edit){
+            setValue(modalContent||value)
+        }
+    }, [])
 
     return (
         <form onSubmit={submitHandler} className='form flex-type-2'>
@@ -80,7 +94,7 @@ const CreateProduct = ({onCreate}:CreateProductProps) => {
             </select>
 
 
-            <button type="submit" className="button button_yellow">Create</button>
+            <button type="submit" className="button button_yellow">{edit?"Save":"Create"}</button>
         </form>
     );
 };

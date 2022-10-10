@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {IProduct} from "../models";
+import {ModalContext} from "../context/ModalContext";
 
 interface ProductProps {
     product: IProduct
@@ -8,6 +9,7 @@ interface ProductProps {
 
 const Product = ({product}: ProductProps) => {
     const [details, setDetails] = useState(false);
+    const {open} = useContext(ModalContext);
 
     const btnClassName = details ? 'button_yellow' : 'button_blue'
 
@@ -15,6 +17,10 @@ const Product = ({product}: ProductProps) => {
 
     return (
         <div className="products__card card grid">
+            {product?.custom && <p
+                className="card__marker absolute"
+                onClick={() => open(product)}
+            >Edit</p>}
             <img src={product.image} alt={product.title}/>
             <p>{product.title}</p>
             <span className="font-bold">{product.price}$</span>

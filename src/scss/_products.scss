@@ -1,7 +1,7 @@
 .products{
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 50px 10%;
+  padding: 20px 10%;
   align-items: start;
   &__card{
 
@@ -15,10 +15,20 @@
   border-radius: 10px;
   padding: 20px 5%;
   text-align: center;
+  position: relative;
   img{
     max-height: 80%;
     max-width: 80%;
     margin: 0 auto;
+  }
+  &__marker{
+    top:  10px;
+    right: 20px;
+    text-transform: capitalize;
+    color: red;
+    font-size: $font-md;
+    font-weight: bold;
+    cursor: pointer;
   }
   &__button{
     width: 140px;

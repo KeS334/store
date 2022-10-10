@@ -10,8 +10,8 @@ import CreateProduct from "../components/CreateProduct";
 import Searchbar from "../components/Searchbar";
 
 const ProductPage = () => {
-    const {products, localProducts, loading, error, addProduct} = useProducts();
-    const {modal, open, close} = useContext(ModalContext);
+    const {products, localProducts, loading, error, addProduct, editProduct} = useProducts();
+    const {modal, edit, modalContent, open, close} = useContext(ModalContext);
 
     const [filteredList, setFilteredList] = useState<IProduct[]>([]);
     const [filterEmpty, setFilterEmpty] = useState(true);
@@ -21,6 +21,10 @@ const ProductPage = () => {
     const createHandler = (product:IProduct) =>{
         close()
         addProduct(product)
+    }
+    const editHandler = (product:IProduct) =>{
+        close()
+        editProduct(product)
     }
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) =>{
         if(event.target.value.trim().length > 0) {
@@ -53,14 +57,19 @@ const ProductPage = () => {
             </div>
 
             {modal &&
-            <Modal title="Create new Product" onClose={close}>
-                <CreateProduct onCreate={createHandler}/>
+            <Modal title={edit?"Edit Product":"Create new Product"} onClose={close} >
+                <CreateProduct
+                    onCreate={createHandler}
+                    onEdit={editHandler}
+                    modalContent={modalContent}
+                    edit={edit}
+                    />
             </Modal>}
 
             {!modal &&
             <button
                 className="popup__opener fixed"
-                onClick={open}
+                onClick={() => open()}
             >+</button>}
 
         </div>
