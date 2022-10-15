@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
+    "github-pages": "^3.0.2",
     "gh-pages": "^4.0.0",
     "postcss": "^8.4.17"
   }

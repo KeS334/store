@@ -8,8 +8,8 @@ function App() {
         <>
             <Header/>
             <Routes>
-                <Route path={process.env.REACT_APP_ROOT_DIR} element={<ProductPage/>}/>
-                <Route path={process.env.REACT_APP_ROOT_DIR + "about/"} element={<AboutPage/>}/>
+                <Route path="/store" element={<ProductPage/>}/>
+                <Route path="/store/about" element={<AboutPage/>}/>
             </Routes>
         </>
     )
