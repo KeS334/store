@@ -2,12 +2,20 @@
   height: 50px;
   color: $color-white;
   background-color: $color-grey;
-  padding: 0 20px;
+  padding: 0 10%;
   &__logo{
     font-size: $font-lg;
+    font-weight: bold;
   }
 }
 .nav{
   display: flex;
   gap: 20px;
+  a{
+    padding: 10px 15px;
+    border-radius: 5px;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
 }

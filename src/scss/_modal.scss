@@ -10,6 +10,11 @@
     font-size: 42px;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
+    transition: $transition-duration;
+    &:hover{
+      box-shadow: 0 2px 10px rgba(0,0,0, 0.5);
+    }
   }
   &__background{
     position: fixed;
