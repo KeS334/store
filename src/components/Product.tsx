@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {IProduct} from "../models";
 import {ModalContext} from "../context/ModalContext";
+import Stars from "./Stars";
 
 interface ProductProps {
     product: IProduct
@@ -22,7 +23,8 @@ const Product = ({product}: ProductProps) => {
                 onClick={() => open(product)}
             >Edit</p>}
             <img src={product.image} alt={product.title}/>
-            <p>{product.title}</p>
+            <p className="card__title">{product.title}</p>
+            {product?.rating && <Stars rating={product.rating.rate}/>}
             <span className="font-bold">{product.price}$</span>
             <button
                 className={btnClasses.join(' ')}
@@ -31,9 +33,7 @@ const Product = ({product}: ProductProps) => {
 
             {details && <div className="card__details">
                 <p>{product.description}</p>
-                <br/>
-                {product?.rating && <p className="card__rate"> Rate: <span >{product?.rating?.rate}</span></p>}
-            </div>
+                </div>
             }
         </div>
     );

@@ -21,6 +21,9 @@
     max-width: 80%;
     margin: 0 auto;
   }
+  .rating{
+    margin: 0 auto;
+  }
   &__marker{
     top:  10px;
     right: 20px;
@@ -39,11 +42,5 @@
     margin-top: 20px;
     font-size: $font-md;
     font-family: 'PT Serif', serif;
-  }
-  &__rate{
-    text-align: center;
-    span{
-      font-weight: bold;
-    }
   }
 }
