@@ -2,12 +2,13 @@ import React, {useContext, useState} from 'react';
 import {useProducts} from "../hooks/products";
 import {ModalContext} from "../context/ModalContext";
 import {IProduct} from "../models";
-import Loader from "../components/Loader";
+import Notes from "../components/Notes";
 import ErrorMessage from "../components/ErrorMessage";
 import Product from "../components/Product";
 import Modal from "../components/Modal";
 import CreateProduct from "../components/CreateProduct";
 import Searchbar from "../components/Searchbar";
+
 
 const ProductPage = () => {
     const {products, localProducts, loading, error, addProduct, editProduct} = useProducts();
@@ -43,17 +44,20 @@ const ProductPage = () => {
 
     }
 
+    const ListToShow = (filterEmpty?[...products, ...localProducts]:filteredList)
+        .map((item) =>
+            <Product product={item} key={item.id}/>)
+
+
+
     return (
-        <div className="">
+        <div className="products">
             <Searchbar onInput={inputHandler}/>
-            {loading && <Loader/>}
-            {error && <ErrorMessage error={error}/>}
-            <div className="products grid">
-                {
-                    (filterEmpty?[...products, ...localProducts]:filteredList)
-                    .map((item,index) =>
-                        <Product product={item} key={index + "-" + item.id}/>)
-                }
+            {loading && <Notes text={"Loading for server items..."}/>}
+            {error && <ErrorMessage error={"Server item issue: " + error}/>}
+            {!error && !ListToShow.length && <Notes text={"Nothing found. Try other keywords"}/>}
+            <div className="products__list grid">
+                {ListToShow}
             </div>
 
             {modal &&

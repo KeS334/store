@@ -8,7 +8,7 @@ interface SearchbarProps {
 
 const Searchbar = ({onInput}:SearchbarProps) => {
     return (
-        <div className="searchbar">
+        <div className="products__searchbar searchbar">
             <div className="searchbar__container">
                 <input
                     type="text"

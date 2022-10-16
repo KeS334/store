@@ -1,0 +1,30 @@
+@media (max-width: 1200px) {
+  .products{
+    &__list{
+      grid-template-columns: 1fr 1fr;
+      max-width: 800px;
+    }
+  }
+  .searchbar{
+    &__container{
+      max-width: 800px;
+    }
+  }
+  .about {
+    &__container {
+      max-width: 800px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+  .products{
+    &__list{
+      grid-template-columns: 1fr
+    }
+  }
+}

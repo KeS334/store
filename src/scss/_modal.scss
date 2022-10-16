@@ -6,9 +6,9 @@
     width: 50px;
     background-color: $color-yellow;
     color: $color-white;
+    border: 1px solid $color-white;
     line-height: 50px;
     font-size: 42px;
-    border: none;
     border-radius: 50%;
     cursor: pointer;
     transition: $transition-duration;
@@ -23,16 +23,18 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
   }
   &__window{
-    max-width: 100%;
-    width: 500px;
+    max-width: 500px;
+    width: 90%;
     border-radius: 10px;
     background-color: $color-white;
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
+    z-index: 2;
   }
   &__title{
     font-size: $font-lg;

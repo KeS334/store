@@ -24,7 +24,7 @@ const Product = ({product}: ProductProps) => {
             >Edit</p>}
             <img src={product.image} alt={product.title}/>
             <p className="card__title">{product.title}</p>
-            {product?.rating && <Stars rating={product.rating.rate}/>}
+            <Stars rating={product.rating ? product.rating.rate:0}/>
             <span className="font-bold">{product.price}$</span>
             <button
                 className={btnClasses.join(' ')}

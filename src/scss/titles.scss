@@ -1,0 +1,19 @@
+%titles{
+  width: 100%;
+  padding: 50px;
+  p{
+    color: $color-white;
+    font-size: $font-xl;
+    text-align: center;
+  }
+}
+
+.notes{
+  @extend %titles;
+}
+.error{
+  @extend %titles;
+  p{
+    color: $color-red;
+  }
+}
