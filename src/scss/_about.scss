@@ -1,8 +1,21 @@
 .about{
   padding: 20px 0;
+  font-size: $font-lg;
+  line-height: $font-2xl;
   &__container{
     max-width: 1400px;
     width: 90%;
     margin: 0 auto;
+  }
+  &__card{
+    text-align: left;
+  }
+  ul{
+    list-style-position: inside;
+    line-height: $font-xl;
+    margin-left: 20px;
+  }
+  a{
+    text-decoration: underline;
   }
 }
