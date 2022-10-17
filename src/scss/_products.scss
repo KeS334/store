@@ -16,7 +16,8 @@
     z-index: 1;
   }
   &__card{
-
+    grid-template-rows: 200px 80px 30px 30px 40px auto;
+    align-items: center;
   }
 }
 .searchbar{
@@ -42,9 +43,6 @@
 }
 
 .card{
-  display: grid;
-  grid-template-rows: 200px 80px 30px 30px 40px auto;
-  align-items: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px 5%;
@@ -62,9 +60,13 @@
     overflow: hidden;
   }
   img{
-    max-height: 80%;
-    max-width: 80%;
+    max-height: 75%;
+    max-width: 75%;
     margin: 0 auto;
+    transition: $transition-duration;
+    &:hover{
+      transform: scale(1.25);
+    }
   }
   .rating{
     margin: 0 auto;

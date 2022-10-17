@@ -45,9 +45,7 @@ export function useProducts(){
             setLoading(false)
             setError(error.message)
         }
-
     }
-
     function fetchLocalProducts(){
         setLocalProducts(JSON.parse(localStorage.getItem('localProducts')||'[]'));
     }
@@ -55,7 +53,6 @@ export function useProducts(){
     useEffect(() =>{
         fetchProducts()
         fetchLocalProducts()
-
     }, [])
 
     return {products, localProducts, loading, error, addProduct, editProduct}
