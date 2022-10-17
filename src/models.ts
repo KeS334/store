@@ -11,3 +11,8 @@ export interface IProduct {
     }
     custom?: boolean
 }
+
+export interface IItemCount {
+    value: string,
+    count: number
+}

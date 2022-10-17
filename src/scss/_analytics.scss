@@ -1,0 +1,14 @@
+.analytics{
+  padding: 20px 0;
+  &__container{
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  p{
+    font-size: $font-lg;
+    line-height: $font-xl;
+  }
+}
